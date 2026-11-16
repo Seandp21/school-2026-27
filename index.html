@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- EDIT: title and description -->
+<title>Your Name – Developer & Designer</title>
+<meta name="description" content="Portfolio of Your Name. I build clear, fast, useful things for the web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EAEFF3; --ink:#13202B; --muted:#52616D; --line:#C5D0D9;
+  --accent:#2A4BFF; --accent-ink:#fff; --mark:#FFD84A;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1720; --ink:#E7EDF2; --muted:#9AA9B5; --line:#26333F;
+    --accent:#7C93FF; --accent-ink:#0F1720; --mark:#FFD84A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1720; --ink:#E7EDF2; --muted:#9AA9B5; --line:#26333F;
+  --accent:#7C93FF; --accent-ink:#0F1720; --mark:#FFD84A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.25rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem)}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0}
+header .mark{font:800 1.1rem var(--display);text-decoration:none}
+nav{display:flex;gap:1.5rem;align-items:center;font:500 1rem var(--display)}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+#theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:.35rem .8rem;font:500 .9rem var(--display);cursor:pointer}
+
+/* hero */
+.hero{padding:clamp(3rem,10vw,7rem) 0 clamp(3rem,8vw,5rem)}
+h1{font:800 clamp(3rem,10.5vw,8.5rem)/.92 var(--display);letter-spacing:-.035em;margin:0 0 2rem;max-width:12ch}
+h1 span{background:linear-gradient(transparent 62%,var(--mark) 62% 92%,transparent 92%);color:var(--ink)}
+.lede{max-width:34ch;font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.4;margin:0 0 2rem}
+.cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;font:700 1rem var(--display);padding:.85rem 1.4rem;border-radius:6px;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-2px)}
+.btn{transition:transform .15s}
+
+/* work */
+section{padding:clamp(2.5rem,6vw,4.5rem) 0;border-top:1px solid var(--line)}
+h2{font:700 1.1rem var(--display);color:var(--muted);margin:0 0 1.5rem;letter-spacing:0}
+.work{list-style:none;margin:0;padding:0}
+.work a{display:grid;grid-template-columns:1fr auto;gap:.25rem 2rem;align-items:baseline;padding:1.5rem 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .2s,background .2s}
+.work li:first-child a{border-top:1px solid var(--line)}
+.work h3{font:700 clamp(1.7rem,4.5vw,3rem)/1.05 var(--display);letter-spacing:-.02em;margin:0}
+.work p{grid-column:1;margin:0;color:var(--muted);font-size:1.1rem;max-width:52ch}
+.work .meta{grid-row:1;grid-column:2;font:500 1rem var(--display);color:var(--muted)}
+.work a:hover,.work a:focus-visible{background:var(--accent);color:var(--accent-ink);padding-left:1rem;padding-right:1rem}
+.work a:hover p,.work a:hover .meta,.work a:focus-visible p,.work a:focus-visible .meta{color:var(--accent-ink)}
+
+/* about + contact */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem)}
+.cols p{margin:0 0 1rem;max-width:44ch}
+.skills{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.skills li{border:1px solid var(--line);border-radius:99px;padding:.2rem .85rem;font:500 .95rem var(--display)}
+.contact a.big{font:800 clamp(1.8rem,6vw,4rem)/1.05 var(--display);letter-spacing:-.03em;text-decoration-thickness:3px;text-underline-offset:.15em;text-decoration-color:var(--accent)}
+.links{display:flex;gap:1.5rem;margin-top:1.5rem;font:500 1.05rem var(--display)}
+footer{padding:2rem 0 3rem;color:var(--muted);font:400 .95rem var(--display);border-top:1px solid var(--line)}
+
+@media (max-width:720px){
+  .cols{grid-template-columns:1fr}
+  .work a{grid-template-columns:1fr}
+  .work .meta{grid-row:auto;grid-column:1}
+  nav a.hide{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="mark" href="#top">Your Name</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about" class="hide">About</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Toggle dark mode">Dark</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <!-- EDIT: your headline. The highlighted phrase is the <span>. -->
+      <h1>I build <span>useful</span> things for the web.</h1>
+      <p class="lede">I’m Your Name, a developer in Your City. I design and ship fast, accessible sites and tools.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn" href="mailto:you@example.com">Email me</a>
+      </div>
+    </div>
+
+    <section id="work" aria-labelledby="work-h">
+      <h2 id="work-h">Selected work</h2>
+      <!-- EDIT: replace each project. href = live site or repo -->
+      <ul class="work">
+        <li><a href="https://github.com/Seandp21/project-one">
+          <h3>Project One</h3><span class="meta">2026 · Web app</span>
+          <p>One sentence on what it does and who it’s for.</p></a></li>
+        <li><a href="https://github.com/Seandp21/project-two">
+          <h3>Project Two</h3><span class="meta">2025 · Open source</span>
+          <p>One sentence on the problem you solved and the result.</p></a></li>
+        <li><a href="https://github.com/Seandp21/project-three">
+          <h3>Project Three</h3><span class="meta">2025 · Design</span>
+          <p>One sentence on your role and the tools you used.</p></a></li>
+      </ul>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <div class="cols">
+        <div>
+          <p>Write two or three short sentences about who you are, what you care about, and what you’re looking for next.</p>
+          <p>Mention where you’re based and how you like to work.</p>
+        </div>
+        <ul class="skills" aria-label="Skills">
+          <!-- EDIT: your skills -->
+          <li>HTML &amp; CSS</li><li>JavaScript</li><li>Python</li><li>React</li><li>UI design</li><li>Accessibility</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <a class="big" href="mailto:you@example.com">you@example.com</a>
+      <div class="links">
+        <a href="https://github.com/Seandp21">GitHub</a>
+        <a href="https://linkedin.com/in/yourname">LinkedIn</a>
+        <a href="resume.pdf">Résumé</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="yr">2026</span> Your Name</footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  function isDark(){
+    var t=root.getAttribute('data-theme');
+    return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label(){btn.textContent=isDark()?'Light':'Dark'}
+  btn.addEventListener('click',function(){
+    root.setAttribute('data-theme',isDark()?'light':'dark');label();
+  });
+  label();
+})();
+</script>
+</body>
+</html>
