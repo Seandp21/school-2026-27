@@ -1,2 +1,303 @@
-# school-2026-27
-Personal archive for the 2026-27 school year: homework, projects, class notes, and club activities.
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sean Daniel Pacho – Pixel Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06143a;--panel:#0b2a6f;--blue:#1e5bff;--sky:#4da3ff;--ice:#cfe6ff;--deep:#02081f}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ice);font:24px/1.3 "VT323",ui-monospace,monospace;overflow-x:hidden;
+ background-image:linear-gradient(rgba(77,163,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(77,163,255,.07) 2px,transparent 2px);background-size:32px 32px;animation:grid 6s linear infinite}
+@keyframes grid{to{background-position:32px 32px,32px 32px}}
+h1,h2,h3,.pf,.btn,.nav button{font-family:"Press Start 2P",ui-monospace,monospace;font-weight:400}
+h1{font-size:clamp(20px,4.2vw,38px);line-height:1.5;margin:0 0 20px;color:#fff}
+h2{font-size:clamp(16px,3vw,26px);margin:0 0 28px;color:#fff}
+h3{font-size:14px;line-height:1.6;margin:0 0 10px;color:#fff}
+p{margin:0 0 14px}
+:focus-visible{outline:4px solid #fff;outline-offset:3px}
+
+/* animated sky */
+.sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.cloud{position:absolute;left:0;width:16px;height:16px;background:rgba(77,163,255,.2);
+ box-shadow:16px 0 0 rgba(77,163,255,.2),32px 0 0 rgba(77,163,255,.2),48px 0 0 rgba(77,163,255,.2),0 16px 0 rgba(77,163,255,.2),16px 16px 0 rgba(77,163,255,.2),32px 16px 0 rgba(77,163,255,.2),48px 16px 0 rgba(77,163,255,.2),64px 16px 0 rgba(77,163,255,.2);animation:drift linear infinite}
+@keyframes drift{from{transform:translateX(-120px)}to{transform:translateX(105vw)}}
+.star{position:absolute;width:6px;height:6px;background:#fff;animation:tw 2s steps(2) infinite}
+@keyframes tw{50%{opacity:.15}}
+.bit{position:absolute;bottom:-20px;background:rgba(77,163,255,.25);animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(90deg)}}
+.trail{position:fixed;width:8px;height:8px;background:var(--sky);pointer-events:none;z-index:70;animation:fade .6s steps(4) forwards}
+@keyframes fade{to{opacity:0;transform:translateY(14px) scale(.3)}}
+
+/* header */
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:14px 22px;background:var(--deep);border-bottom:4px solid var(--blue)}
+.nav .logo{font-size:14px;color:#fff;background:none;border:0;cursor:pointer;padding:6px}
+.nav .logo span{color:var(--sky)}
+.nav .logo:hover{animation:tw .4s steps(2) 3}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:6px;flex-wrap:wrap}
+.nav li button{font-size:11px;color:var(--ice);background:none;border:0;padding:10px 12px;cursor:pointer;position:relative}
+.nav li button:hover{color:#fff}
+.nav li button::before{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;margin-top:-4px;background:#fff;opacity:0}
+.nav li button[aria-current=page]{color:#fff;padding-left:20px}
+.nav li button[aria-current=page]::before{opacity:1;animation:tw 1s steps(2) infinite}
+
+main{position:relative;z-index:1;padding:110px 22px 60px;max-width:1040px;margin:0 auto}
+.screen{display:none}
+.screen.active{display:block}
+.screen.active :is(h1,h2,p,.type,.btn,.box,.card,.tile,.stage,.marquee){animation:in .45s steps(5) backwards;animation-delay:calc(var(--i,0)*80ms)}
+@keyframes in{from{opacity:0;transform:translateY(28px)}}
+
+.box{background:var(--panel);padding:26px;box-shadow:0 -4px 0 0 var(--sky),0 4px 0 0 var(--deep),-4px 0 0 0 var(--sky),4px 0 0 0 var(--deep)}
+.btn{font-size:12px;line-height:1.4;color:#fff;background:var(--blue);border:0;padding:16px 20px;margin:0 14px 14px 0;cursor:pointer;text-decoration:none;display:inline-block;
+ box-shadow:inset -4px -4px 0 #0a3bb8,inset 4px 4px 0 #6fb6ff,0 0 0 4px var(--deep);transition:transform .15s steps(2)}
+.btn:hover{transform:translateY(-4px)}
+.btn:active{transform:translateY(2px);box-shadow:inset 4px 4px 0 #0a3bb8,inset -4px -4px 0 #6fb6ff,0 0 0 4px var(--deep)}
+.btn.alt{background:var(--panel)}
+
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;min-height:56vh}
+.type{font:28px "VT323",monospace;color:var(--sky);min-height:38px;margin-bottom:26px}
+.caret{display:inline-block;width:12px;height:22px;background:var(--sky);vertical-align:-2px;margin-left:4px;animation:tw .8s steps(2) infinite}
+.stage{position:relative;text-align:center;padding-top:60px}
+.char{width:min(220px,50vw);height:auto;cursor:pointer;animation:bob .9s steps(2) infinite;display:inline-block}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.char.jump{animation:jump .5s steps(6)}
+@keyframes jump{50%{transform:translateY(-70px)}}
+.ground{height:16px;margin-top:6px;background:repeating-linear-gradient(90deg,var(--sky) 0 16px,var(--blue) 16px 32px)}
+.bubble{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#fff;color:var(--deep);padding:10px 14px;font-size:22px;white-space:nowrap;box-shadow:0 -4px #fff,0 4px #fff,-4px 0 #fff,4px 0 #fff}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-12px;margin-left:-6px;width:12px;height:8px;background:#fff;box-shadow:0 8px #fff}
+.marquee{overflow:hidden;white-space:nowrap;margin-top:30px;background:var(--deep);border-top:4px solid var(--blue);border-bottom:4px solid var(--blue);padding:12px 0;font:11px "Press Start 2P",monospace;color:var(--sky)}
+.marquee div{display:inline-block;animation:mq 24s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:30px}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:4px dotted var(--blue)}
+.stat b{font:400 11px/1.6 "Press Start 2P",monospace;color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+.grid.pm{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.card{text-align:left;font:inherit;color:inherit;border:0;cursor:pointer;display:block;width:100%;transition:transform .15s steps(2),background .15s steps(2)}
+.card:hover{transform:translateY(-8px);background:#0f3a96}
+.tag{display:inline-block;background:var(--deep);color:var(--sky);padding:2px 8px;margin:6px 6px 0 0;font-size:20px}
+.card .go{font:11px "Press Start 2P",monospace;color:#fff;margin-top:16px;display:block}
+.tile{padding:10px;border:0;cursor:pointer;color:inherit;font:inherit;text-align:center;transition:transform .15s steps(2)}
+.tile:hover{transform:translateY(-8px) rotate(-1deg)}
+.tile .im{aspect-ratio:4/5;background:var(--deep);overflow:hidden;position:relative}
+.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:8px;font-size:18px;color:var(--sky)}
+.tile img{position:relative;width:100%;height:100%;object-fit:cover;transition:transform .3s steps(4)}
+.tile:hover img{transform:scale(1.12)}
+.tile .cap{display:block;margin-top:10px;font:10px/1.5 "Press Start 2P",monospace;color:#fff}
+
+.modal{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:rgba(2,8,31,.85);padding:20px}
+.modal.open{display:flex}
+.modal .box{max-width:560px;width:100%;max-height:90vh;overflow:auto;animation:pop .3s steps(4)}
+@keyframes pop{from{transform:scale(.4)}to{transform:scale(1)}}
+.modal ul{padding-left:22px;margin:0 0 20px}
+
+.wipe{position:fixed;inset:0;z-index:60;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(8,1fr);pointer-events:none}
+.wipe i{background:var(--blue);outline:1px solid var(--blue);transform:scale(0);transition:transform .18s steps(3)}
+.wipe.on{pointer-events:all}
+.wipe.on i{transform:scale(1)}
+
+@media (max-width:760px){.hero,.about{grid-template-columns:1fr}.nav{padding:10px}body{font-size:22px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+
+<header class="nav">
+  <button class="logo pf" data-go="home">SEAN<span>.PX</span></button>
+  <nav aria-label="Main"><ul>
+    <li><button data-go="home">Home</button></li>
+    <li><button data-go="about">About</button></li>
+    <li><button data-go="pubmats">Pubmats</button></li>
+    <li><button data-go="projects">Projects</button></li>
+  </ul></nav>
+</header>
+
+<main>
+  <section class="screen active" id="home" aria-label="Home">
+    <div class="hero">
+      <div>
+        <h1>Hi, I’m Sean Daniel Pacho.</h1>
+        <div class="type" aria-live="polite"><span id="typed"></span><span class="caret"></span></div>
+        <button class="btn" data-go="projects">View my projects</button>
+        <button class="btn alt" data-go="pubmats">See my pubmats</button>
+      </div>
+      <div class="stage">
+        <div class="bubble" id="bubble">Click me!</div>
+        <div id="hero-char" role="button" tabindex="0" aria-label="Say hello to the pixel character" style="display:inline-block"></div>
+        <div class="ground"></div>
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true"><div><span>NU CLARK ★ CODE DIGITAL COMMITTEE ★ PUBMAT EDITOR ★ BLUE PIXELS ★ </span><span>NU CLARK ★ CODE DIGITAL COMMITTEE ★ PUBMAT EDITOR ★ BLUE PIXELS ★ </span></div></div>
+  </section>
+
+  <section class="screen" id="about" aria-label="About me">
+    <h2>About me</h2>
+    <div class="about">
+      <div class="box">
+        <p>I’m a student who builds small things on the web and keeps everything I make in one place.</p>
+        <p>This site collects my lab tasks from the 2026-27 school year, along with the pubmats I edit.</p>
+        <p>I am a student at NU CLARK, a digital committee of CODE, and I love editing pubmats.</p>
+        <button class="btn" data-go="pubmats">See my pubmats</button>
+        <a class="btn alt" href="https://github.com/Seandp21" target="_blank" rel="noopener">Open my GitHub</a>
+      </div>
+      <div class="box">
+        <div class="stat"><span>School year</span><b>2026-27</b></div>
+        <div class="stat"><span>GitHub</span><b>Seandp21</b></div>
+        <div class="stat"><span>Lab tasks</span><b>1</b></div>
+        <div class="stat" style="border:0"><span>Favorite color</span><b style="color:var(--sky)">Blue</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="pubmats" aria-label="My pubmats">
+    <h2>My pubmats</h2>
+    <p style="max-width:640px">Pubmats I edited for CODE, the digital committee at NU CLARK. Tap one to view it bigger.</p>
+    <div class="grid pm" id="pubmat-grid"></div>
+  </section>
+
+  <section class="screen" id="projects" aria-label="My projects">
+    <h2>My projects</h2>
+    <div class="grid" id="project-grid"></div>
+  </section>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="box">
+    <h3 id="m-title"></h3>
+    <p id="m-desc"></p>
+    <ul id="m-list"></ul>
+    <div id="m-file"></div>
+    <div id="m-tags"></div>
+    <div style="margin-top:20px">
+      <button class="btn alt" id="m-prev">Previous</button>
+      <button class="btn alt" id="m-next">Next</button>
+      <button class="btn" id="m-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="lb" role="dialog" aria-modal="true" aria-label="Pubmat viewer">
+  <div class="box" style="max-width:640px;text-align:center">
+    <img id="lb-img" alt="" style="max-width:100%;max-height:60vh">
+    <p id="lb-miss"></p>
+    <h3 id="lb-cap"></h3>
+    <button class="btn alt" id="lb-prev">Previous</button>
+    <button class="btn alt" id="lb-next">Next</button>
+    <button class="btn" id="lb-close">Close</button>
+  </div>
+</div>
+
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+
+<script>
+/* ---------- EDIT YOUR CONTENT HERE ---------- */
+var PUBMATS=[
+ {t:"Pubmat 1",f:"pubmats/pubmat-1.png"},{t:"Pubmat 2",f:"pubmats/pubmat-2.png"},{t:"Pubmat 3",f:"pubmats/pubmat-3.png"},
+ {t:"Pubmat 4",f:"pubmats/pubmat-4.png"},{t:"Pubmat 5",f:"pubmats/pubmat-5.png"},{t:"Pubmat 6",f:"pubmats/pubmat-6.png"}
+];
+/* f = path of the file inside your repo (pdf, image, doc, zip). Use "" if none yet. */
+var PROJECTS=[
+ {t:"Lab Task 1",d:"Replace this with the goal of your first lab task.",f:"files/lab-task-1.pdf",l:["What the task asked for","Tools I used","What I learned"],g:["Lab","Task 1"]},
+ {t:"Lab Task 2",d:"Replace this with the goal of your second lab task.",f:"",l:["What the task asked for","Tools I used","What I learned"],g:["Lab","Task 2"]},
+ {t:"Lab Task 3",d:"Replace this with the goal of your third lab task.",f:"",l:["What the task asked for","Tools I used","What I learned"],g:["Lab","Task 3"]},
+ {t:"Lab Task 4",d:"Replace this with the goal of your fourth lab task.",f:"",l:["What the task asked for","Tools I used","What I learned"],g:["Lab","Task 4"]}
+];
+var ROLES=["Student","Pubmat editor","Web builder","Always learning"];
+var LINES=["Hello!","Nice to meet you!","Check my pubmats!","Jump!","Blue is the best color."];
+/* -------------------------------------------- */
+
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* sky */
+(function(){var s=$("#sky"),h="",i;
+ for(i=0;i<5;i++)h+='<div class="cloud" style="top:'+(12+i*17)+'%;animation-duration:'+(60+i*18)+'s;animation-delay:-'+(i*23)+'s"></div>';
+ for(i=0;i<22;i++)h+='<div class="star" style="left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation-delay:-'+Math.random()*2+'s"></div>';
+ for(i=0;i<28;i++){var z=6+(Math.random()*10|0);h+='<div class="bit" style="left:'+Math.random()*100+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+(8+Math.random()*14)+'s;animation-delay:-'+Math.random()*20+'s"></div>'}
+ s.innerHTML=h})();
+
+/* sprite */
+var MAP=["...hhhh...","..hhhhhh..","..hssssh..","..sksskss.","..ssssss..","...ssss...",".bbbbbbbb.","sbbwwwwbbs","sbbbbbbbbs",".bbbbbbbb.","..pp..pp..","..pp..pp.."];
+var COL={h:"#1e5bff",s:"#ffd8b0",k:"#02081f",b:"#4da3ff",w:"#ffffff",p:"#0b2a6f"};
+var svg='<svg class="char" id="char" viewBox="0 0 10 12" shape-rendering="crispEdges" aria-hidden="true">';
+MAP.forEach(function(r,y){for(var x=0;x<10;x++){var c=r[x];if(c!==".")svg+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="'+COL[c]+'"/>'}});
+$("#hero-char").innerHTML=svg+"</svg>";
+var li=0,bt;
+function hello(){var c=$("#char");c.classList.remove("jump");void c.getBoundingClientRect();c.classList.add("jump");
+ li=(li+1)%LINES.length;$("#bubble").textContent=LINES[li];clearTimeout(bt);bt=setTimeout(function(){c.classList.remove("jump")},520)}
+$("#hero-char").addEventListener("click",hello);
+$("#hero-char").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();hello()}});
+
+/* typing */
+(function(){var ri=0,ci=0,del=false,el=$("#typed");
+ if(reduce){el.textContent=ROLES.join(", ");return}
+ (function tick(){var w=ROLES[ri];ci+=del?-1:1;el.textContent=w.slice(0,ci);
+  var d=del?45:90;if(!del&&ci===w.length){del=true;d=1100}else if(del&&ci===0){del=false;ri=(ri+1)%ROLES.length;d=350}
+  setTimeout(tick,d)})()})();
+
+/* pubmats */
+var pg=$("#pubmat-grid"),pi=0,popen=null;
+PUBMATS.forEach(function(p,i){var b=document.createElement("button");b.className="tile box";
+ b.innerHTML='<div class="im"><span class="ph">Add '+p.f+'</span><img src="'+p.f+'" alt="'+p.t+'" loading="lazy"></div><span class="cap">'+p.t+'</span>';
+ var im=$("img",b);im.onerror=function(){im.remove()};
+ b.addEventListener("click",function(){popen=b;lb(i);$("#lb").classList.add("open");$("#lb-close").focus()});pg.appendChild(b)});
+function lb(i){pi=(i+PUBMATS.length)%PUBMATS.length;var p=PUBMATS[pi],im=$("#lb-img");im.style.display="";$("#lb-miss").textContent="";
+ im.onerror=function(){im.style.display="none";$("#lb-miss").textContent="Add the image at "+p.f};im.src=p.f;im.alt=p.t;
+ $("#lb-cap").textContent=p.t+" ("+(pi+1)+" of "+PUBMATS.length+")"}
+function closeLb(){$("#lb").classList.remove("open");if(popen)popen.focus()}
+$("#lb-close").addEventListener("click",closeLb);
+$("#lb-prev").addEventListener("click",function(){lb(pi-1)});
+$("#lb-next").addEventListener("click",function(){lb(pi+1)});
+$("#lb").addEventListener("click",function(e){if(e.target===this)closeLb()});
+document.addEventListener("keydown",function(e){if(!$("#lb").classList.contains("open"))return;
+ if(e.key==="Escape")closeLb();if(e.key==="ArrowLeft")lb(pi-1);if(e.key==="ArrowRight")lb(pi+1)});
+
+/* lab tasks + attached file */
+var grid=$("#project-grid"),mi=0,opener=null;
+PROJECTS.forEach(function(p,i){var b=document.createElement("button");b.className="card box";
+ b.innerHTML="<h3>"+p.t+"</h3><p>"+p.d+"</p>"+p.g.map(function(g){return'<span class="tag">'+g+"</span>"}).join("")+(p.f?'<span class="tag">File attached</span>':"")+'<span class="go">Open</span>';
+ b.addEventListener("click",function(){opener=b;show(i);$("#modal").classList.add("open");$("#m-close").focus()});grid.appendChild(b)});
+function fileView(p){var e=$("#m-file");
+ if(!p.f){e.innerHTML="<p>No file attached yet.</p>";return}
+ var im=/\.(png|jpe?g|gif|webp)$/i.test(p.f),pdf=/\.pdf$/i.test(p.f);
+ e.innerHTML=(im?'<img src="'+p.f+'" alt="" style="max-width:100%;margin-bottom:14px">':pdf?'<iframe src="'+p.f+'" title="'+p.t+' file" style="width:100%;height:240px;border:0;background:#fff;margin-bottom:14px"></iframe>':"")+
+ '<a class="btn" href="'+p.f+'" target="_blank" rel="noopener">Open file</a><a class="btn alt" href="'+p.f+'" download>Download</a><p>'+p.f.split("/").pop()+"</p>"}
+function show(i){mi=(i+PROJECTS.length)%PROJECTS.length;var p=PROJECTS[mi];
+ $("#m-title").textContent=p.t;$("#m-desc").textContent=p.d;
+ $("#m-list").innerHTML=p.l.map(function(x){return"<li>"+x+"</li>"}).join("");
+ fileView(p);
+ $("#m-tags").innerHTML=p.g.map(function(g){return'<span class="tag">'+g+"</span>"}).join("")}
+function closeM(){$("#modal").classList.remove("open");if(opener)opener.focus()}
+$("#m-close").addEventListener("click",closeM);
+$("#m-prev").addEventListener("click",function(){show(mi-1)});
+$("#m-next").addEventListener("click",function(){show(mi+1)});
+$("#modal").addEventListener("click",function(e){if(e.target===this)closeM()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$("#modal").classList.contains("open"))closeM()});
+
+/* motion helpers */
+function reveal(sc){$$("h1,h2,p,.type,.btn,.box,.card,.tile,.stage,.marquee",sc).forEach(function(e,i){e.style.setProperty("--i",Math.min(i,12));e.style.animation="none";void e.offsetWidth;e.style.animation=""})}
+if(!reduce)addEventListener("mousemove",function(e){var t=Date.now();if(t-(window.lt||0)<45)return;window.lt=t;
+ var d=document.createElement("div");d.className="trail";d.style.left=e.clientX-4+"px";d.style.top=e.clientY-4+"px";document.body.appendChild(d);setTimeout(function(){d.remove()},600)});
+
+/* navigation with pixel wipe */
+var wipe=$("#wipe"),cur="home",busy=false;
+for(var r=0;r<8;r++)for(var c=0;c<12;c++){wipe.appendChild(document.createElement("i"))}
+function randomWipe(){var m=Math.random()*3|0;$$("i",wipe).forEach(function(c,n){var r=n/12|0,k=n%12;c.style.transitionDelay=(m==0?(r+k)*20:m==1?k*30:Math.random()*350)+"ms"})}
+function swap(name){$$(".screen").forEach(function(s){s.classList.toggle("active",s.id===name)});
+ $$(".nav li button").forEach(function(b){if(b.dataset.go===name)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+ cur=name;scrollTo(0,0);reveal(document.getElementById(name));
+ if(location.hash!=="#"+name)history.replaceState(null,"","#"+name)}
+function go(name){if(busy||name===cur||!document.getElementById(name))return;
+ if(reduce){swap(name);return}
+ busy=true;randomWipe();wipe.classList.add("on");
+ setTimeout(function(){swap(name);wipe.classList.remove("on");setTimeout(function(){busy=false},560)},560)}
+$$("[data-go]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.go)})});
+var start=location.hash.slice(1);swap(document.getElementById(start)&&$("#"+start).classList.contains("screen")?start:"home");
+addEventListener("hashchange",function(){go(location.hash.slice(1))});
+</script>
+</body>
+</html>
